@@ -56,10 +56,10 @@ function ContactForm() {
     const handleChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => { 
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/contact", formData);
+            await axios.post(`${import.meta.env.BackendURL}/contact`, formData);
             showToast("Message sent successfully!");
             setFormData({ name: "", email: "", message: "" });
         } catch {

@@ -6,12 +6,20 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// middleware
-app.use(cors());
+// Trust proxy for Render/Heroku
+app.enable("trust proxy");
+
+// Proper CORS config
+app.use(cors({
+  origin: "https://dhruvchauhan-liart.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  credentials: true
+}));
+
+// Middleware
 app.use(express.json());
 
-// sending mail
-
+// Contact endpoint
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -25,11 +33,11 @@ app.post("/contact", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER, // has to be your own Gmail
-      to: process.env.EMAIL_USER, // your inbox
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
       subject: `Message from ${name}`,
       text: message,
-      replyTo: email, // <--- this is the key
+      replyTo: email,
     });
 
     res.status(200).json({ success: true, message: "Email sent successfully" });

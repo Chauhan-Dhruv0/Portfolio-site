@@ -5,16 +5,13 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(cors());
 
 // Trust proxy for Render/Heroku
 app.enable("trust proxy");
 
 // Proper CORS config
-app.use(cors({
-  origin: "https://dhruvchauhan-liart.vercel.app",
-  methods: ["GET", "POST", "OPTIONS"],
-  credentials: true
-}));
+
 
 // Middleware
 app.use(express.json());

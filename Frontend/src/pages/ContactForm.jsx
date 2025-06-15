@@ -59,7 +59,7 @@ function ContactForm() {
     const handleSubmit = async (e) => { 
         e.preventDefault();
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact`, formData);
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact`, formData);
             showToast("Message sent successfully!");
             setFormData({ name: "", email: "", message: "" });
         } catch {

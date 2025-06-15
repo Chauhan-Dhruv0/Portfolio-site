@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family:helveticacompressed;
+    src: url('./assets/fonts/helvetica-compressed.otf');
+
+    font-family:oswald;
+    src: url('./assets/fonts/Oswald-Medium.ttf');
+}
+@theme{
+    --font-custom-regular:helveticacompressed;
+    --font-oswald-regular:oswald;
+}
+html {
+  scroll-behavior: smooth;
+}
